@@ -1,0 +1,28 @@
+MIDDLEWARE = [
+    # add this at the top
+    # django tenant middleware
+    'django_tenants.middleware.main.TenantMainMiddleware',
+
+    #........
+]
+
+
+# Setup Postgres database in settings.py
+DATABASES = {
+    'default': {
+        # Tenant Engine
+        'ENGINE': 'django_tenants.postgresql_backend',
+        # set database name
+        'NAME': 'saasy',
+        # set your user details
+        'USER': 'admin',
+        'PASSWORD': 'password',
+        'HOST': 'localhost',
+        'POST': '5432'
+    }
+}
+
+# DATABASE ROUTER
+DATABASE_ROUTERS = (
+    'django_tenants.routers.TenantSyncRouter',
+)
